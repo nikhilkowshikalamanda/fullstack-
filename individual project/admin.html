@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="E-Shop Administrator Portal. Manage inventory products, track sales revenue, and fulfill orders.">
+  <title>Admin Dashboard — E-Shop Mini Project</title>
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body style="background-color: #f1f5f9;">
+
+  <!-- Admin Navbar -->
+  <header class="header-nav" style="border-bottom: 2px solid var(--primary);">
+    <div class="container nav-container">
+      <div style="display: flex; align-items: center; gap: 14px;">
+        <a href="admin.html" class="brand-logo">
+          <div class="brand-logo-icon" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">⚙️</div>
+          <span>E-Shop <span class="accent">Admin</span></span>
+        </a>
+        <span class="admin-badge" style="background: #dbeafe; color: #1e40af;">Management Portal</span>
+      </div>
+
+      <div class="nav-actions">
+        <div class="user-pill">
+          <span>Admin: <strong id="admin-user-name">Administrator</strong></span>
+        </div>
+        <a href="index.html" class="btn btn-secondary btn-sm">🏪 View Storefront</a>
+        <button class="btn btn-outline btn-sm" onclick="handleLogout()">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top: 36px; padding-bottom: 80px;">
+    
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; flex-wrap: wrap; gap: 16px;">
+      <div>
+        <h1 style="font-size: 2.2rem; margin-bottom: 4px;">Store Management Console</h1>
+        <p style="color: var(--text-muted);">Overview of real-time sales, order fulfillment, and in-memory inventory</p>
+      </div>
+      <button class="btn btn-primary" onclick="openAddProductModal()">
+        ➕ Add New Product
+      </button>
+    </div>
+
+    <!-- Metrics Cards Grid -->
+    <div class="admin-metrics-grid">
+      <div class="metric-card">
+        <div class="metric-icon-box" style="background: #eff6ff; color: var(--primary);">📦</div>
+        <div>
+          <div class="metric-number" id="metric-total-products">0</div>
+          <div class="metric-label">Total Inventory Products</div>
+        </div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-icon-box" style="background: #f0fdf4; color: var(--success);">🛒</div>
+        <div>
+          <div class="metric-number" id="metric-total-orders">0</div>
+          <div class="metric-label">Total Customer Orders</div>
+        </div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-icon-box" style="background: #fefce8; color: var(--accent);">💰</div>
+        <div>
+          <div class="metric-number" id="metric-total-revenue">₹0</div>
+          <div class="metric-label">Gross Store Revenue</div>
+        </div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-icon-box" style="background: #fee2e2; color: var(--danger);">⚠️</div>
+        <div>
+          <div class="metric-number" id="metric-out-of-stock">0</div>
+          <div class="metric-label">Out of Stock Items</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabbed Navigation -->
+    <div class="admin-tabs">
+      <button class="admin-tab-btn active" data-tab="products">
+        📦 Products Inventory
+      </button>
+      <button class="admin-tab-btn" data-tab="orders">
+        📋 Customer Orders
+      </button>
+    </div>
+
+    <!-- TAB 1: PRODUCTS INVENTORY -->
+    <section id="tab-products">
+      <div style="background: white; border-radius: var(--radius-lg); border: 1px solid var(--border); padding: 20px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;">
+        <div style="position: relative; max-width: 400px; width: 100%;">
+          <span style="position: absolute; left: 12px; top: 10px; color: var(--text-muted);">🔍</span>
+          <input 
+            type="text" 
+            id="admin-product-search" 
+            class="form-control" 
+            placeholder="Search products by name or category..." 
+            style="padding-left: 38px;"
+          />
+        </div>
+        <div style="font-size: 0.88rem; color: var(--text-muted);">
+          Changes update the in-memory array immediately
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th style="width: 70px;">ID</th>
+              <th style="width: 70px;">Image</th>
+              <th>Product Name & Description</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Stock</th>
+              <th style="width: 170px;">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="admin-products-tbody">
+            <!-- Injected by admin.js -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TAB 2: ORDERS MANAGEMENT -->
+    <section id="tab-orders" style="display: none;">
+      <div style="background: white; border-radius: var(--radius-lg); border: 1px solid var(--border); padding: 20px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;">
+        <div style="position: relative; max-width: 380px; width: 100%;">
+          <span style="position: absolute; left: 12px; top: 10px; color: var(--text-muted);">🔍</span>
+          <input 
+            type="text" 
+            id="admin-order-search" 
+            class="form-control" 
+            placeholder="Search order ID, customer name, phone..." 
+            style="padding-left: 38px;"
+          />
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <label style="font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">Status Filter:</label>
+          <select id="admin-order-status-filter" class="form-control" style="width: auto;">
+            <option value="All">All Statuses</option>
+            <option value="Pending">Pending</option>
+            <option value="Processing">Processing</option>
+            <option value="Shipped">Shipped</option>
+            <option value="Delivered">Delivered</option>
+            <option value="Cancelled">Cancelled</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Customer Details</th>
+              <th>Items & Date</th>
+              <th>Total Amount</th>
+              <th>Status Badge</th>
+              <th>Update Status</th>
+              <th>View</th>
+            </tr>
+          </thead>
+          <tbody id="admin-orders-tbody">
+            <!-- Injected by admin.js -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ADD / EDIT PRODUCT MODAL -->
+  <div class="modal-backdrop" id="product-modal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="product-modal-title">Add New Product</h3>
+        <button class="btn btn-secondary btn-sm" onclick="closeProductModal()">✕</button>
+      </div>
+      <form id="admin-product-form">
+        <div class="modal-body">
+          <input type="hidden" id="prod-form-id" />
+
+          <div class="form-group">
+            <label class="form-label" for="prod-form-name">Product Name *</label>
+            <input type="text" id="prod-form-name" class="form-control" required placeholder="e.g. Sony WH-1000XM5 Wireless Headphones" />
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label class="form-label" for="prod-form-category">Category *</label>
+              <select id="prod-form-category" class="form-control" required>
+                <option value="Electronics">Electronics</option>
+                <option value="Clothing">Clothing</option>
+                <option value="Footwear">Footwear</option>
+                <option value="Accessories">Accessories</option>
+                <option value="Home and Lifestyle">Home and Lifestyle</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="prod-form-price">Price (₹ INR) *</label>
+              <input type="number" id="prod-form-price" class="form-control" required min="1" step="1" placeholder="e.g. 2499" />
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label class="form-label" for="prod-form-stock">Stock Quantity *</label>
+              <input type="number" id="prod-form-stock" class="form-control" required min="0" placeholder="e.g. 25" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="prod-form-image">Image URL</label>
+              <input type="url" id="prod-form-image" class="form-control" placeholder="https://images.unsplash.com/..." />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="prod-form-desc">Product Description</label>
+            <textarea id="prod-form-desc" class="form-control" rows="3" placeholder="Provide product specifications and details..."></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeProductModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="save-product-btn">Save Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ORDER DETAIL MODAL -->
+  <div class="modal-backdrop" id="order-detail-modal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>Order Information</h3>
+        <button class="btn btn-secondary btn-sm" onclick="closeOrderDetailModal()">✕</button>
+      </div>
+      <div class="modal-body" id="order-detail-modal-body">
+        <!-- Injected by admin.js -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeOrderDetailModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

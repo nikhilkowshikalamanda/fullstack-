@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Enter shipping address and complete your order with Cash on Delivery.">
+  <title>Checkout — E-Shop Mini Project</title>
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="header-nav">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-logo-icon">🛍️</div>
+        <span>E-<span class="accent">Shop</span></span>
+      </a>
+
+      <button class="mobile-toggle" aria-label="Toggle Navigation">☰</button>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="products.html" class="nav-link">Products</a></li>
+        <li><a href="cart.html" class="nav-link">Cart</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="cart.html" class="cart-btn" title="View Shopping Cart">
+          <span>🛒</span>
+          <span>Cart</span>
+          <span class="cart-badge">0</span>
+        </a>
+
+        <div id="nav-auth-container" style="display: flex; align-items: center; gap: 8px;">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top: 40px; padding-bottom: 70px;" id="checkout-page-container">
+    
+    <div style="margin-bottom: 28px;">
+      <h1 style="font-size: 2.2rem; margin-bottom: 6px;">Secure Checkout</h1>
+      <p style="color: var(--text-muted);">Please provide your delivery information to complete this purchase</p>
+    </div>
+
+    <div class="cart-layout">
+      <!-- Shipping Details Form Column -->
+      <div class="cart-card">
+        <h2 style="font-size: 1.4rem; margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
+          <span>📍</span> 1. Shipping & Delivery Address
+        </h2>
+
+        <form id="checkout-form">
+          <div class="form-group">
+            <label class="form-label" for="ship-name">Full Name *</label>
+            <input type="text" id="ship-name" class="form-control" required placeholder="e.g. Rahul Sharma" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="ship-phone">Contact Phone Number (10 digits) *</label>
+            <input type="tel" id="ship-phone" class="form-control" required placeholder="e.g. 9876543210" pattern="[0-9]{10}" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="ship-street">Street Address / House No. / Landmark *</label>
+            <textarea id="ship-street" class="form-control" rows="2" required placeholder="e.g. Flat 402, Green Meadows Apartment, MG Road"></textarea>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px;">
+            <div class="form-group">
+              <label class="form-label" for="ship-city">City *</label>
+              <input type="text" id="ship-city" class="form-control" required placeholder="Bengaluru" value="Bengaluru" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="ship-state">State *</label>
+              <input type="text" id="ship-state" class="form-control" required placeholder="Karnataka" value="Karnataka" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="ship-pincode">PIN Code (6 digits) *</label>
+              <input type="text" id="ship-pincode" class="form-control" required placeholder="560001" pattern="[0-9]{6}" />
+            </div>
+          </div>
+
+          <h2 style="font-size: 1.4rem; margin: 30px 0 16px; display: flex; align-items: center; gap: 8px;">
+            <span>💵</span> 2. Payment Method
+          </h2>
+
+          <div style="background: var(--bg-muted); border: 2px solid var(--primary); border-radius: var(--radius-md); padding: 18px; margin-bottom: 24px; display: flex; align-items: center; gap: 14px;">
+            <input type="radio" id="pay-cod" name="paymentMethod" value="cod" checked style="width: 20px; height: 20px; accent-color: var(--primary);" />
+            <div>
+              <label for="pay-cod" style="font-weight: 700; cursor: pointer; display: block;">Cash on Delivery (COD)</label>
+              <span style="font-size: 0.85rem; color: var(--text-muted);">
+                Pay with cash or UPI directly when your package arrives at your doorstep. (Demonstration mode)
+              </span>
+            </div>
+          </div>
+
+          <button type="submit" id="place-order-btn" class="btn btn-primary btn-lg btn-block">
+            <span>Place Order (Cash on Delivery) ➔</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Order Review Sidebar -->
+      <div class="cart-card" style="height: fit-content;">
+        <h3 style="font-size: 1.3rem; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 12px;">Order Summary</h3>
+        
+        <div id="checkout-summary-items" style="max-height: 280px; overflow-y: auto; margin-bottom: 20px;">
+          <!-- Injected by checkout.js -->
+        </div>
+
+        <div class="order-summary-row">
+          <span>Delivery Charges:</span>
+          <span style="color: var(--success); font-weight: 700;">FREE</span>
+        </div>
+
+        <div class="order-summary-row">
+          <span>Estimated Taxes:</span>
+          <span>₹0</span>
+        </div>
+
+        <div class="order-summary-total">
+          <span>Total Payable:</span>
+          <span id="checkout-grand-total" style="color: var(--primary);">₹0</span>
+        </div>
+
+        <div style="margin-top: 20px; font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; background: #f8fafc; padding: 12px; border-radius: 8px;">
+          ℹ️ <strong>College Demo Note:</strong> Order stock is decremented immediately on the Express.js server's in-memory array.
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Modal Container for Order Confirmation -->
+  <div id="order-success-modal"></div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <div class="brand-logo" style="color: white; margin-bottom: 12px;">
+          <div class="brand-logo-icon">🛍️</div>
+          <span>E-<span class="accent">Shop</span></span>
+        </div>
+        <p style="font-size: 0.9rem; line-height: 1.6; max-width: 320px;">
+          A full-stack e-commerce project designed for college demonstration, illustrating clean client-server communication using Express.js and Vanilla JS.
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="cart.html">Cart</a></li>
+          <li><a href="orders.html">Orders</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Accounts</h4>
+        <ul class="footer-links">
+          <li><a href="login.html">Login</a></li>
+          <li><a href="register.html">Register</a></li>
+          <li><a href="admin.html">Admin Portal</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Safety</h4>
+        <ul class="footer-links">
+          <li><span>Session Token Auth</span></li>
+          <li><span>HttpOnly Cookies</span></li>
+          <li><span>Server Stock Checks</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <div>© 2026 E-Shop Mini Project. All rights reserved.</div>
+      <div>College Mini Project Implementation.</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>

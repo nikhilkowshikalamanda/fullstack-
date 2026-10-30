@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sign in to your E-Shop account or access the demonstration administrator portal.">
+  <title>Login — E-Shop Mini Project</title>
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="header-nav">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-logo-icon">🛍️</div>
+        <span>E-<span class="accent">Shop</span></span>
+      </a>
+
+      <div class="nav-actions">
+        <a href="index.html" class="btn btn-secondary btn-sm">← Back to Store</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="auth-wrapper">
+      <div class="auth-card">
+        <div class="auth-header">
+          <div style="font-size: 2.4rem; margin-bottom: 8px;">👋</div>
+          <h1>Welcome Back</h1>
+          <p>Sign in to your customer or admin account</p>
+        </div>
+
+        <form id="login-form">
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address</label>
+            <input type="email" id="email" class="form-control" required placeholder="name@example.com" autocomplete="username" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="password">Password</label>
+            <input type="password" id="password" class="form-control" required placeholder="Enter your password" autocomplete="current-password" />
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 10px;">
+            Log In ➔
+          </button>
+        </form>
+
+        <div style="text-align: center; margin-top: 20px; font-size: 0.9rem; color: var(--text-muted);">
+          Don't have an account yet? <a href="register.html" style="color: var(--primary); font-weight: 600;">Register here</a>
+        </div>
+
+        <!-- College Demo Helper Box -->
+        <div class="demo-account-box">
+          <h4>🧪 1-Click Demo Evaluation Accounts</h4>
+          <p style="color: #14532d; margin-bottom: 12px; font-size: 0.82rem;">
+            Click a button below to automatically load pre-configured credentials:
+          </p>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <button type="button" class="btn btn-sm btn-secondary" onclick="fillDemoCredentials('admin')">
+              🔑 Fill Admin (admin@eshop.com)
+            </button>
+            <button type="button" class="btn btn-sm btn-secondary" onclick="fillDemoCredentials('customer')">
+              👤 Fill Customer (customer@eshop.com)
+            </button>
+          </div>
+          <div style="margin-top: 10px; font-size: 0.78rem; color: #166534;">
+            <em>Note: Authenticated via in-memory session tokens without an external database.</em>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-bottom" style="border-top: none;">
+      <div>© 2026 E-Shop Mini Project.</div>
+      <div>Designed for Full Stack College Submission.</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

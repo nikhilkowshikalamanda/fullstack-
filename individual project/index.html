@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore top trending electronics, fashion, footwear, accessories and home essentials with fast delivery and Cash on Delivery.">
+  <title>E-Shop — Full Stack E-Commerce Mini Project</title>
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="header-nav">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" id="nav-brand-logo">
+        <div class="brand-logo-icon">🛍️</div>
+        <span>E-<span class="accent">Shop</span></span>
+      </a>
+
+      <button class="mobile-toggle" aria-label="Toggle Navigation">☰</button>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="products.html" class="nav-link">Products</a></li>
+        <li><a href="products.html?category=Electronics" class="nav-link">Electronics</a></li>
+        <li><a href="products.html?category=Clothing" class="nav-link">Clothing</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="cart.html" class="cart-btn" id="nav-cart-btn" title="View Shopping Cart">
+          <span>🛒</span>
+          <span>Cart</span>
+          <span class="cart-badge" id="cart-badge-counter">0</span>
+        </a>
+
+        <div id="nav-auth-container" style="display: flex; align-items: center; gap: 8px;">
+          <!-- Dynamically populated by main.js checkAuthStatus() -->
+          <a href="login.html" class="btn btn-secondary btn-sm">Login</a>
+          <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Promotional Section -->
+  <section class="hero-section">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="hero-tag">
+          <span>⚡ College Mini Project Demo</span>
+          <span>• In-Memory Express.js Backend</span>
+        </div>
+        <h1 class="hero-title">
+          Discover Premium Goods at <span class="highlight">Unbeatable Prices</span>.
+        </h1>
+        <p class="hero-subtitle">
+          Shop the latest laptops, headphones, apparel, and lifestyle essentials with instant cart checkout, zero database complexity, and pure vanilla full stack performance.
+        </p>
+        <div class="hero-actions">
+          <a href="products.html" class="btn btn-primary btn-lg" id="hero-shop-now-btn">
+            Shop Catalog Now ➔
+          </a>
+          <a href="login.html" class="btn btn-secondary btn-lg" style="background: rgba(255,255,255,0.15); color: white; border-color: rgba(255,255,255,0.25);">
+            Demo Sign In
+          </a>
+        </div>
+
+        <div class="hero-features">
+          <div class="hero-feature-item">
+            <span class="hero-feature-icon">🚚</span>
+            <div class="hero-feature-text">
+              <h4>Free Delivery</h4>
+              <p>On all prepaid & COD orders</p>
+            </div>
+          </div>
+          <div class="hero-feature-item">
+            <span class="hero-feature-icon">💵</span>
+            <div class="hero-feature-text">
+              <h4>Cash on Delivery</h4>
+              <p>Pay when package arrives</p>
+            </div>
+          </div>
+          <div class="hero-feature-item">
+            <span class="hero-feature-icon">🛡️</span>
+            <div class="hero-feature-text">
+              <h4>100% In-Memory</h4>
+              <p>Express.js data arrays</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-card">
+          <img 
+            src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&auto=format&fit=crop&q=80" 
+            alt="MacBook Air M2" 
+            class="hero-card-img"
+          />
+          <div class="hero-card-info">
+            <div>
+              <div style="font-size: 0.8rem; color: #93c5fd; font-weight: 700; text-transform: uppercase;">Trending Featured</div>
+              <h3 style="color: white; font-size: 1.15rem; margin-top: 2px;">Apple MacBook Air M2</h3>
+            </div>
+            <div class="hero-card-price">₹94,990</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Strip -->
+  <section class="container" style="padding-top: 60px;">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title">Explore by Category</h2>
+        <p class="section-subtitle">Curated collections handpicked for everyday style, tech & home</p>
+      </div>
+      <a href="products.html" class="btn btn-outline btn-sm">View All ➔</a>
+    </div>
+
+    <div class="categories-grid">
+      <a href="products.html?category=Electronics" class="category-card">
+        <div class="category-icon">💻</div>
+        <div class="category-name">Electronics</div>
+      </a>
+      <a href="products.html?category=Clothing" class="category-card">
+        <div class="category-icon">👕</div>
+        <div class="category-name">Clothing</div>
+      </a>
+      <a href="products.html?category=Footwear" class="category-card">
+        <div class="category-icon">👟</div>
+        <div class="category-name">Footwear</div>
+      </a>
+      <a href="products.html?category=Accessories" class="category-card">
+        <div class="category-icon">🕶️</div>
+        <div class="category-name">Accessories</div>
+      </a>
+      <a href="products.html?category=Home and Lifestyle" class="category-card">
+        <div class="category-icon">🏡</div>
+        <div class="category-name">Home & Lifestyle</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Featured Products Section -->
+  <section class="container" style="padding-bottom: 70px;">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title">Featured Products</h2>
+        <p class="section-subtitle">Top rated merchandise backed by our in-memory store catalog</p>
+      </div>
+      <a href="products.html" class="btn btn-outline btn-sm">See Full Catalog ➔</a>
+    </div>
+
+    <div class="products-grid" id="featured-products-container">
+      <!-- Dynamically loaded via inline fetch -->
+    </div>
+  </section>
+
+  <!-- Project Architecture Highlights Banner -->
+  <section style="background: var(--bg-muted); padding: 50px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 60px;">
+    <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; text-align: center;">
+      <div style="background: white; padding: 24px; border-radius: var(--radius-lg); border: 1px solid var(--border);">
+        <div style="font-size: 2.2rem; margin-bottom: 12px;">⚡</div>
+        <h3 style="font-size: 1.15rem; margin-bottom: 6px;">Vanilla Frontend</h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">Built with pure HTML5, CSS3, and JavaScript with zero heavy framework bloat.</p>
+      </div>
+      <div style="background: white; padding: 24px; border-radius: var(--radius-lg); border: 1px solid var(--border);">
+        <div style="font-size: 2.2rem; margin-bottom: 12px;">🚀</div>
+        <h3 style="font-size: 1.15rem; margin-bottom: 6px;">Express.js Backend</h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">Robust RESTful APIs for Products, Auth, Orders, and Admin management.</p>
+      </div>
+      <div style="background: white; padding: 24px; border-radius: var(--radius-lg); border: 1px solid var(--border);">
+        <div style="font-size: 2.2rem; margin-bottom: 12px;">🧠</div>
+        <h3 style="font-size: 1.15rem; margin-bottom: 6px;">In-Memory Persistence</h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">Fast in-memory JavaScript data structures without database installation overhead.</p>
+      </div>
+      <div style="background: white; padding: 24px; border-radius: var(--radius-lg); border: 1px solid var(--border);">
+        <div style="font-size: 2.2rem; margin-bottom: 12px;">🛡️</div>
+        <h3 style="font-size: 1.15rem; margin-bottom: 6px;">Role-Based Security</h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">Server-side session validation ensuring admin routes cannot be bypassed.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <div class="brand-logo" style="color: white; margin-bottom: 12px;">
+          <div class="brand-logo-icon">🛍️</div>
+          <span>E-<span class="accent">Shop</span></span>
+        </div>
+        <p style="font-size: 0.9rem; line-height: 1.6; max-width: 320px;">
+          A full-stack e-commerce project designed for college demonstration, illustrating clean client-server communication using Express.js and Vanilla JS.
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <h4>Quick Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">All Products</a></li>
+          <li><a href="cart.html">Shopping Cart</a></li>
+          <li><a href="orders.html">Track Orders</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>User & Admin</h4>
+        <ul class="footer-links">
+          <li><a href="login.html">Customer Login</a></li>
+          <li><a href="register.html">New Customer Registration</a></li>
+          <li><a href="admin.html">Administrator Dashboard</a></li>
+          <li><a href="login.html">Admin Credentials</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Project Info</h4>
+        <ul class="footer-links">
+          <li><span>Stack: HTML5 / CSS3</span></li>
+          <li><span>Logic: Vanilla JavaScript</span></li>
+          <li><span>Server: Express.js</span></li>
+          <li><span>Storage: In-Memory Arrays</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <div>© 2026 E-Shop Mini Project. Created for College Full Stack Coursework.</div>
+      <div>Designed with clean UI/UX and standard REST APIs.</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script>
+    // Load top 8 featured products on the homepage
+    document.addEventListener('DOMContentLoaded', async () => {
+      const container = document.getElementById('featured-products-container');
+      if (!container) return;
+      try {
+        const res = await fetch('/api/products?limit=8');
+        const data = await res.json();
+        if (data.success && data.products) {
+          container.innerHTML = data.products.map(p => `
+            <div class="product-card">
+              <div class="product-thumb-wrap">
+                <a href="product-details.html?id=${p.id}">
+                  <img 
+                    src="${escapeHtml(p.image)}" 
+                    alt="${escapeHtml(p.name)}" 
+                    class="product-thumb"
+                    onerror="this.onerror=null; this.src='${APP_CONFIG.fallbackImage}';"
+                    loading="lazy"
+                  />
+                </a>
+              </div>
+              <div class="product-card-body">
+                <div class="product-category-text">${escapeHtml(p.category)}</div>
+                <a href="product-details.html?id=${p.id}">
+                  <h3 class="product-title">${escapeHtml(p.name)}</h3>
+                </a>
+                <div class="product-rating">
+                  <span class="star-rating">★</span>
+                  <span style="font-weight: 600; color: var(--text-main);">${p.rating || '4.5'}</span>
+                  <span>(${p.reviewsCount || 40}+ reviews)</span>
+                </div>
+                <div class="product-price-row">
+                  <div class="product-price">${formatRupee(p.price)}</div>
+                  <div class="stock-indicator ${p.stock === 0 ? 'out-of-stock' : 'in-stock'}">
+                    ${p.stock === 0 ? 'Out of stock' : `${p.stock} in stock`}
+                  </div>
+                </div>
+                <div class="product-actions">
+                  <button class="btn btn-primary btn-sm" onclick="CartManager.addItem(${JSON.stringify(p).replace(/"/g, '&quot;')}, 1)">
+                    🛒 Add to Cart
+                  </button>
+                </div>
+              </div>
+            </div>
+          `).join('');
+        }
+      } catch (e) {
+        console.error("Featured load error:", e);
+      }
+    });
+  </script>
+</body>
+</html>

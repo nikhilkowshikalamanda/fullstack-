@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="View product specifications, real-time stock levels, customer ratings and add to your shopping cart.">
+  <title>Product Details — E-Shop Mini Project</title>
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="header-nav">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-logo-icon">🛍️</div>
+        <span>E-<span class="accent">Shop</span></span>
+      </a>
+
+      <button class="mobile-toggle" aria-label="Toggle Navigation">☰</button>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="products.html" class="nav-link active">Products</a></li>
+        <li><a href="products.html?category=Electronics" class="nav-link">Electronics</a></li>
+        <li><a href="products.html?category=Clothing" class="nav-link">Clothing</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="cart.html" class="cart-btn" title="View Shopping Cart">
+          <span>🛒</span>
+          <span>Cart</span>
+          <span class="cart-badge">0</span>
+        </a>
+
+        <div id="nav-auth-container" style="display: flex; align-items: center; gap: 8px;">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top: 30px; padding-bottom: 70px;">
+    
+    <!-- Breadcrumb -->
+    <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px;">
+      <a href="index.html">Home</a> &nbsp;›&nbsp; 
+      <a href="products.html">Products</a> &nbsp;›&nbsp; 
+      <span style="color: var(--text-main); font-weight: 600;">Product Details</span>
+    </div>
+
+    <!-- Product Detail Container -->
+    <div id="product-detail-container">
+      <!-- Injected by product-details.js -->
+    </div>
+
+    <!-- Related Products Strip -->
+    <section id="related-products-section" style="margin-top: 60px;">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title" style="font-size: 1.5rem;">Similar Products You Might Like</h2>
+          <p class="section-subtitle">Customers also viewed these items</p>
+        </div>
+      </div>
+      <div class="products-grid" id="related-products-container">
+        <!-- Injected by product-details.js -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <div class="brand-logo" style="color: white; margin-bottom: 12px;">
+          <div class="brand-logo-icon">🛍️</div>
+          <span>E-<span class="accent">Shop</span></span>
+        </div>
+        <p style="font-size: 0.9rem; line-height: 1.6; max-width: 320px;">
+          A full-stack e-commerce project designed for college demonstration, illustrating clean client-server communication using Express.js and Vanilla JS.
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="cart.html">Cart</a></li>
+          <li><a href="orders.html">Orders</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Accounts</h4>
+        <ul class="footer-links">
+          <li><a href="login.html">Login</a></li>
+          <li><a href="register.html">Register</a></li>
+          <li><a href="admin.html">Admin Portal</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Demonstration</h4>
+        <ul class="footer-links">
+          <li><span>In-Memory Storage</span></li>
+          <li><span>Real-time Stock Check</span></li>
+          <li><span>Express.js Framework</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <div>© 2026 E-Shop Mini Project. All rights reserved.</div>
+      <div>College Mini Project Implementation.</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/product-details.js"></script>
+</body>
+</html>
